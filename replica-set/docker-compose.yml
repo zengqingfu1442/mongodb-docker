@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+    mongo1:
+        container_name: mongo1
+        image: mongo:4.4
+        command: ["--replSet", "rs0", "--bind_ip_all"]
+        ports:
+            - "27017:27017"
+        restart: always
+        links:
+            - "mongo2"
+            - "mongo3"
+    mongo2:
+        container_name: mongo2
+        image: mongo:4.4
+        command: ["--replSet", "rs0", "--bind_ip_all"]
+        ports:
+            - "27018:27017"
+        restart: always
+    mongo3:
+        container_name: mongo3
+        image: mongo:4.4
+        command: ["--replSet", "rs0", "--bind_ip_all"]
+        ports:
+            - "27019:27017"
+        restart: always
